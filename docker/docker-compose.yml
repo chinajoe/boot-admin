@@ -6,8 +6,8 @@ services:
     environment:
       - JAVA_OPTS=-server -Dspring.profiles.active=prod
       - TZ=Asia/Shanghai
-    # ports:
-    #   - 8088:8088
+    ports:
+      - 8088:8088
     container_name: boot-admin
     networks:
       - docker-net

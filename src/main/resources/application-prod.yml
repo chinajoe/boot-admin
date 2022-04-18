@@ -6,7 +6,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.17.0.4:3306/boot-admin?characterEncoding=UTF-8&useSSL=false&useUnicode=true&serverTimezone=GMT%2b8
+    url: jdbc:mysql://sh-cynosdbmysql-grp-e15gdeok.sql.tencentcdb.com:26059/boot-admin?characterEncoding=UTF-8&useSSL=false&useUnicode=true&serverTimezone=GMT%2b8
     username: d2_rw
     password: fPj4iS5jiFphkifpdL7
     platform: mysql
@@ -20,7 +20,7 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
   redis:
-    host: localhost
+    host: 10.0.0.8
     password:
     port: 6379
     lettuce:
