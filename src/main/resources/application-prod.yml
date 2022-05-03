@@ -28,6 +28,9 @@ spring:
         max-active: 8
         max-idle: 8
         min-idle: 0
+  data:
+    mongodb:
+      uri: mongodb+srv://qk_work:UGHcXOoEHEWVQWPI@cluster0.qgcm7.mongodb.net/qk
   messages:
     basename: i18n/message
   quartz:

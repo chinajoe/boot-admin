@@ -28,6 +28,7 @@
         <bitwalker.version>1.21</bitwalker.version>
         <easyexcel.version>3.0.5</easyexcel.version>
         <fastjson.version>1.2.70</fastjson.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -159,7 +160,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <!--mybatis-plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -205,10 +205,31 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
+        <!-- cos_api -->
         <dependency>
             <groupId>com.qcloud</groupId>
             <artifactId>cos_api</artifactId>
             <version>5.6.54</version>
+        </dependency>
+
+        <!-- spring-data-mongodb -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
         </dependency>
 
     </dependencies>
