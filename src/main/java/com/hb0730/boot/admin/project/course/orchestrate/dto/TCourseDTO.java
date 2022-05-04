@@ -1,8 +1,6 @@
-package com.hb0730.boot.admin.project.course.orchestrate.entity;
+package com.hb0730.boot.admin.project.course.orchestrate.dto;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * @description:
@@ -10,12 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @date: 2022/5/3 23:06
  */
 @Data
-@Document(collection = "t_course")
-public class TCourseDO {
-    @Id
+public class TCourseDTO {
     private String id;
-    // 课程音频
-    private String fkCourseAudioId;
     // 课程名称
     private String courseName;
     // 课程封面

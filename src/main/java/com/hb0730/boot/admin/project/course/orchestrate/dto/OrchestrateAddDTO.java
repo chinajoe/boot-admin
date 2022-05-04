@@ -1,19 +1,16 @@
-package com.hb0730.boot.admin.project.course.orchestrate.entity;
+package com.hb0730.boot.admin.project.course.orchestrate.dto;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
 
 /**
  * @description:
  * @author: qiaojinfeng3
- * @date: 2022/5/3 23:06
+ * @date: 2022/5/4 21:35
  */
 @Data
-@Document(collection = "t_course")
-public class TCourseDO {
-    @Id
-    private String id;
+public class OrchestrateAddDTO implements Serializable {
     // 课程音频
     private String fkCourseAudioId;
     // 课程名称
@@ -26,8 +23,4 @@ public class TCourseDO {
     private Integer publishStatus;
     // 发布时间
     private Long publishTime;
-    // 创建时间
-    private Long createTime;
-    // 更新时间
-    private Long updateTime;
 }

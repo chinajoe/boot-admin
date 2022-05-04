@@ -30,7 +30,7 @@ spring:
         min-idle: 0
   data:
     mongodb:
-      uri: mongodb+srv://qk_work:UGHcXOoEHEWVQWPI@cluster0.qgcm7.mongodb.net/qk
+      uri: mongodb+srv://qk_work:UGHcXOoEHEWVQWPI@cluster0.qgcm7.mongodb.net/qk?maxIdleTimeMS=3000
   messages:
     basename: i18n/message
   quartz:
