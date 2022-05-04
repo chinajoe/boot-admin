@@ -34,7 +34,7 @@ public class TCourseServiceImpl implements TCourseService {
         final int pageNum = orchestrateParams.getPageNum().intValue();
         final int pageSize = orchestrateParams.getPageSize().intValue();
         final Query query = getQuery(orchestrateParams)
-            .with(PageRequest.of(pageNum, pageSize));
+            .with(PageRequest.of(pageNum - 1, pageSize));
         final long count = mongoTemplate.count(query, TCourseDO.class);
         final List<TCourseDO> list = mongoTemplate.find(query, TCourseDO.class);
         return new PageVO<TCourseDO>().setRecords(list).setTotal(count);
