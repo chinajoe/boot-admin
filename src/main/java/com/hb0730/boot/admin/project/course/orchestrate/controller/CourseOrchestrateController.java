@@ -1,12 +1,12 @@
 package com.hb0730.boot.admin.project.course.orchestrate.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.hb0730.boot.admin.domain.result.PageVO;
 import com.hb0730.boot.admin.domain.result.R;
 import com.hb0730.boot.admin.domain.result.Result;
 import com.hb0730.boot.admin.project.course.orchestrate.convert.TCourseConvert;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateAddDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateParams;
+import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateUpdateDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.TCourseDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.entity.TCourseDO;
 import com.hb0730.boot.admin.project.course.orchestrate.service.TCourseService;
@@ -40,14 +40,14 @@ public class CourseOrchestrateController {
      */
     @RequestMapping("/list/page")
     public Result<PageVO<TCourseDTO>> list(@RequestBody OrchestrateParams params) {
-        log.info("list--param:{}", JSON.toJSONString(params));
+        log.info("list--param:{}", params);
         final PageVO<TCourseDO> pageVO = tCourseService.findPageList(params);
-        log.info("list--pageVO:{}", JSON.toJSONString(pageVO));
+        log.info("list--pageVO:{}", pageVO);
         final List<TCourseDTO> tCourseDTOS = TCourseConvert.INSTANCE.toDto(pageVO.getRecords());
         // page
         final PageVO<TCourseDTO> dtoPageVO = new PageVO<TCourseDTO>()
-                .setRecords(tCourseDTOS)
-                .setTotal(pageVO.getTotal());
+            .setRecords(tCourseDTOS)
+            .setTotal(pageVO.getTotal());
         return R.success(dtoPageVO);
     }
 
@@ -59,8 +59,34 @@ public class CourseOrchestrateController {
      */
     @RequestMapping("/save")
     public Result<Boolean> add(@RequestBody OrchestrateAddDTO addDTO) {
-        log.info("add--param:{}", JSON.toJSONString(addDTO));
+        log.info("add--param:{}", addDTO);
         tCourseService.add(addDTO);
+        return R.success(null);
+    }
+
+    /**
+     * Update result.
+     *
+     * @param updateDTO the update dto
+     * @return the result
+     */
+    @RequestMapping("/update/{id}")
+    public Result<Boolean> update(@RequestBody OrchestrateUpdateDTO updateDTO) {
+        log.info("update--param:{}", updateDTO);
+        tCourseService.updateById(updateDTO);
+        return R.success(null);
+    }
+
+    /**
+     * Delete result.
+     *
+     * @param ids the ids
+     * @return the result
+     */
+    @RequestMapping("/delete")
+    public Result<Boolean> delete(@RequestBody List<String> ids) {
+        log.info("delete--param ids:{}", ids);
+        tCourseService.deleteByIds(ids);
         return R.success(null);
     }
 }

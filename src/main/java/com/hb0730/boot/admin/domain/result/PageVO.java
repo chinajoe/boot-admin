@@ -2,6 +2,7 @@ package com.hb0730.boot.admin.domain.result;
 
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
  * @date: 2022 /5/4 22:12
  */
 @Data
+@ToString
 public class PageVO<T> implements Serializable {
     /**
      * The Records.

@@ -12,7 +12,9 @@ import java.io.Serializable;
  */
 @Data
 @ToString
-public class OrchestrateAddDTO implements Serializable {
+public class OrchestrateUpdateDTO implements Serializable {
+    // 课程id
+    private String id;
     // 课程音频
     private String fkCourseAudioId;
     // 课程名称
@@ -21,8 +23,5 @@ public class OrchestrateAddDTO implements Serializable {
     private String courseCover;
     // 课程描述
     private String courseDescription;
-    // 发布状态: 未发布，已发布
-    private Integer publishStatus;
-    // 发布时间
-    private Long publishTime;
+
 }
