@@ -12,8 +12,6 @@ import com.hb0730.boot.admin.project.course.orchestrate.entity.TCourseDO;
 import com.hb0730.boot.admin.project.course.orchestrate.service.TCourseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,8 +38,8 @@ public class CourseOrchestrateController {
      * @param params the params
      * @return the result
      */
-    @GetMapping("/list")
-    public Result<PageVO<TCourseDTO>> list(OrchestrateParams params) {
+    @RequestMapping("/list/page")
+    public Result<PageVO<TCourseDTO>> list(@RequestBody OrchestrateParams params) {
         log.info("list--param:{}", JSON.toJSONString(params));
         final PageVO<TCourseDO> pageVO = tCourseService.findPageList(params);
         log.info("list--pageVO:{}", JSON.toJSONString(pageVO));
@@ -59,8 +57,8 @@ public class CourseOrchestrateController {
      * @param addDTO the add dto
      * @return the result
      */
-    @PostMapping("/add")
-    public Result add(@RequestBody OrchestrateAddDTO addDTO) {
+    @RequestMapping("/save")
+    public Result<Boolean> add(@RequestBody OrchestrateAddDTO addDTO) {
         log.info("add--param:{}", JSON.toJSONString(addDTO));
         tCourseService.add(addDTO);
         return R.success(null);

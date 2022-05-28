@@ -19,9 +19,9 @@ public class TCourseDTO {
     // 发布状态: 未发布，已发布
     private Integer publishStatus;
     // 发布时间
-    private Long publishTime;
+    private String publishTime;
     // 创建时间
-    private Long createTime;
+    private String createTime;
     // 更新时间
-    private Long updateTime;
+    private String updateTime;
 }

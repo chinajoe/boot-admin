@@ -22,7 +22,7 @@ public class TCourseDO {
     private String courseCover;
     // 课程描述
     private String courseDescription;
-    // 发布状态: 未发布，已发布
+    // 发布状态: 未发布=0，发布中=1，已发布=2
     private Integer publishStatus;
     // 发布时间
     private Long publishTime;

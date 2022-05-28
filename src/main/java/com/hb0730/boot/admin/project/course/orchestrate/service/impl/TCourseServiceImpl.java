@@ -31,11 +31,13 @@ public class TCourseServiceImpl implements TCourseService {
 
     @Override
     public PageVO<TCourseDO> findPageList(OrchestrateParams orchestrateParams) {
+        final Query query = getQuery(orchestrateParams);
+        final long count = mongoTemplate.count(query, TCourseDO.class);
+        // page
         final int pageNum = orchestrateParams.getPageNum().intValue();
         final int pageSize = orchestrateParams.getPageSize().intValue();
-        final Query query = getQuery(orchestrateParams)
-            .with(PageRequest.of(pageNum - 1, pageSize));
-        final long count = mongoTemplate.count(query, TCourseDO.class);
+        query.with(PageRequest.of(pageNum - 1, pageSize))
+            .with(Sort.by(Sort.Direction.DESC, "createTime"));
         final List<TCourseDO> list = mongoTemplate.find(query, TCourseDO.class);
         return new PageVO<TCourseDO>().setRecords(list).setTotal(count);
     }
@@ -58,9 +60,10 @@ public class TCourseServiceImpl implements TCourseService {
         final List<String> sortColumns = orchestrateParams.getSortColumn();
         final String sortType = orchestrateParams.getSortType();
         final String courseName = orchestrateParams.getCourseName();
+        Integer publishStatus = orchestrateParams.getPublishStatus();
         Query query = new Query();
         if (StringUtils.isNotBlank(courseName)) {
-            query.addCriteria(Criteria.where("courseName").regex(".*" + courseName + ".*"));
+            query.addCriteria(Criteria.where("courseName").regex(courseName));
         }
         if (null != sortColumns && !sortColumns.isEmpty()) {
             if (Sort.Direction.ASC.name().equalsIgnoreCase(sortType)) {
@@ -68,6 +71,9 @@ public class TCourseServiceImpl implements TCourseService {
             } else {
                 query.with(Sort.by(Sort.Direction.DESC, sortColumns.toArray(new String[]{})));
             }
+        }
+        if (null != publishStatus) {
+            query.addCriteria(Criteria.where("publishStatus").is(publishStatus));
         }
         return query;
     }

@@ -13,4 +13,5 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class OrchestrateParams extends BaseParams {
     private String courseName;
+    private Integer publishStatus;
 }
