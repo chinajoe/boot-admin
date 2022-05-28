@@ -1,4 +1,4 @@
-package com.hb0730.boot.admin.infrustruture;
+package com.hb0730.boot.admin.infrastructure;
 
 import com.hb0730.boot.admin.project.course.orchestrate.entity.TCourseDO;
 import org.springframework.data.repository.CrudRepository;
@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author: qiaojinfeng3
  * @date: 2022/5/3 23:12
  */
-public interface TCourseRepository extends CrudRepository<TCourseDO, String> {
+public interface TCourseMappingRepository extends CrudRepository<TCourseDO, String> {
 }

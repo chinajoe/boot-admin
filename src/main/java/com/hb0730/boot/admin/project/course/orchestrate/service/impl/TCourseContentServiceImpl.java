@@ -1,6 +1,6 @@
 package com.hb0730.boot.admin.project.course.orchestrate.service.impl;
 
-import com.hb0730.boot.admin.infrustruture.TCourseContentRepository;
+import com.hb0730.boot.admin.infrastructure.TCourseContentRepository;
 import com.hb0730.boot.admin.project.course.orchestrate.convert.TCourseContentConvert;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.CourseContentAddDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.entity.TCourseContentDO;

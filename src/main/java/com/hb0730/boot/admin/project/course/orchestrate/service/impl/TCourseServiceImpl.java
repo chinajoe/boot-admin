@@ -1,7 +1,7 @@
 package com.hb0730.boot.admin.project.course.orchestrate.service.impl;
 
 import com.hb0730.boot.admin.domain.result.PageVO;
-import com.hb0730.boot.admin.infrustruture.TCourseRepository;
+import com.hb0730.boot.admin.infrastructure.TCourseRepository;
 import com.hb0730.boot.admin.project.course.orchestrate.convert.TCourseConvert;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateAddDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateParams;

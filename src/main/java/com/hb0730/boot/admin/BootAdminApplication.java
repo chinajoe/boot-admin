@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @EnableAsync
 @EnableSpringUtil
-@EnableMongoRepositories(basePackages = "com.hb0730.boot.admin.infrustruture")
+@EnableMongoRepositories(basePackages = "com.hb0730.boot.admin.infrastructure")
 public class BootAdminApplication {
     public static void main(String[] args) {
         SpringApplication.run(BootAdminApplication.class, args);

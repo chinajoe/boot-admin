@@ -1,4 +1,4 @@
-package com.hb0730.boot.admin.infrustruture;
+package com.hb0730.boot.admin.infrastructure;
 
 import com.hb0730.boot.admin.project.course.prepare.entity.TPlatformDO;
 import org.springframework.data.repository.CrudRepository;
