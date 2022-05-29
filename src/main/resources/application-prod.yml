@@ -1,6 +1,10 @@
 server:
   port: 8088
 spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
   application:
     name: boot-admin-3.0.0
   datasource:
@@ -9,7 +13,6 @@ spring:
     url: jdbc:mysql://sh-cynosdbmysql-grp-e15gdeok.sql.tencentcdb.com:26059/boot-admin?characterEncoding=UTF-8&useSSL=false&useUnicode=true&serverTimezone=GMT%2b8
     username: d2_rw
     password: fPj4iS5jiFphkifpdL7
-    platform: mysql
     hikari:
       minimum-idle: 5
       maximum-pool-size: 10
@@ -87,6 +90,9 @@ spring:
             threadCount: 10
             threadPriority: 5
             threadsInheritContextClassLoaderOfInitializingThread: true
+  sql:
+    init:
+      platform: mysql
 # mybatis plus
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*mapper.xml
@@ -111,3 +117,8 @@ boot:
       time-unit: hours
       refresh-time: 10
       secret: "abcdefghijklmnopqrstuvwxyz"
+    cos:
+      bucket-name: qk-cosole-1309456451
+      region: ap-hongkong
+      secret-id: AKIDEKEuMZXHp9FF5qNksmRr2zh9QSEl37wW
+      secret-key: ObZIm25tSnxuc5JI3ZptiIemgLlwwhDU

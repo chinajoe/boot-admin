@@ -32,12 +32,14 @@ public enum ResponseStatusEnum implements ValueEnum<String> {
      * 请求必填参数为空
      */
     PARAMS_REQUIRED_IS_NULL("A0410", "请求必填参数为空"),
-
+    /**
+     * 文件超过大小
+     */
+    FILE_OVERSIZE("A0510", "文件大小超过最大限制"),
     /**
      * 地址不在服务范围
      */
     URL_NOT_FOUND("A0422", "地址不在服务范围"),
-
     /**
      * 访问未授权
      */
@@ -45,14 +47,12 @@ public enum ResponseStatusEnum implements ValueEnum<String> {
     /**
      * 无权限使用 API
      */
-    NO_PERMISSION("A0312","无权限使用 API"),
+    NO_PERMISSION("A0312", "无权限使用 API"),
     /**
      * 系统错误
      */
     FAIL("C0001", "系统执行错误"),
-
     ;
-
     private String code;
     private String message;
 

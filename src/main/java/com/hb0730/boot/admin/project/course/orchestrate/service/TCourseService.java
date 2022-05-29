@@ -4,8 +4,10 @@ import com.hb0730.boot.admin.domain.result.PageVO;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateAddDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateParams;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateUpdateDTO;
+import com.hb0730.boot.admin.project.course.orchestrate.dto.TCourseDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.entity.TCourseDO;
 
+import java.io.File;
 import java.util.Collection;
 
 /**
@@ -23,6 +25,14 @@ public interface TCourseService {
      * @return the list
      */
     PageVO<TCourseDO> findPageList(OrchestrateParams orchestrateParams);
+
+    /**
+     * Find page list wrapper page vo.
+     *
+     * @param orchestrateParams params
+     * @return the page vo
+     */
+    PageVO<TCourseDTO> findPageListWrapper(OrchestrateParams orchestrateParams);
 
     /**
      * Add boolean.
@@ -47,4 +57,12 @@ public interface TCourseService {
      * @return the boolean
      */
     boolean deleteByIds(Collection<String> ids);
+
+    /**
+     * Upload collection.
+     *
+     * @param files the files
+     * @return the collection
+     */
+    Collection<String> upload(Collection<File> files);
 }

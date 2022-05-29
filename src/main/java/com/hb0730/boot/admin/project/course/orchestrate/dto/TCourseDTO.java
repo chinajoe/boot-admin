@@ -13,7 +13,13 @@ public class TCourseDTO {
     // 课程名称
     private String courseName;
     // 课程封面
-    private String courseCover;
+    private String courseCoverName;
+    // 课程封面url
+    private String courseCoverUrl;
+    // 课程音频
+    private String courseAudioName;
+    // 课程音频url
+    private String courseAudioUrl;
     // 课程描述
     private String courseDescription;
     // 发布状态: 未发布，已发布

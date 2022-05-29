@@ -1,5 +1,6 @@
 package com.hb0730.boot.admin.project.course.orchestrate.entity;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author: qiaojinfeng3
  * @date: 2022/5/3 23:05
  */
+@Data
 @Document(collection = "t_course_mapping")
 public class TCourseMappingDO {
     @Id

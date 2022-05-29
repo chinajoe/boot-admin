@@ -27,7 +27,7 @@
 
         <bitwalker.version>1.21</bitwalker.version>
         <easyexcel.version>3.0.5</easyexcel.version>
-        <fastjson.version>1.2.70</fastjson.version>
+        <fastjson.version>2.0.3</fastjson.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
     <dependencyManagement>
@@ -204,7 +204,7 @@
         <dependency>
             <groupId>com.qcloud</groupId>
             <artifactId>cos_api</artifactId>
-            <version>5.6.54</version>
+            <version>5.6.80</version>
         </dependency>
 
         <!-- spring-data-mongodb -->
