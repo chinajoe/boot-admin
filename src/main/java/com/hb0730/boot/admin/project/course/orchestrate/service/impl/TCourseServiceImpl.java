@@ -176,8 +176,8 @@ public class TCourseServiceImpl implements TCourseService {
         assert null != updateDTO;
         // get
         String courseName = updateDTO.getCourseName();
-        String courseCover = updateDTO.getCourseCover();
-        String fkCourseAudioId = updateDTO.getFkCourseAudioId();
+        String courseCover = updateDTO.getCourseCover().getId();
+        String fkCourseAudioId = updateDTO.getCourseAudio().getId();
         String courseDescription = updateDTO.getCourseDescription();
         // set
         Update update = new Update();

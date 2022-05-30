@@ -2,6 +2,7 @@ package com.hb0730.boot.admin.project.course.orchestrate.convert;
 
 import com.hb0730.boot.admin.commons.utils.JdDateTimeUtil;
 import com.hb0730.boot.admin.domain.model.dto.KV;
+import com.hb0730.boot.admin.domain.model.dto.UploadFileInfo;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateAddDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.TCourseDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.entity.TCourseDO;
@@ -57,12 +58,10 @@ public interface TCourseConvert {
         tCourseDTO.setId(tCourseDO.getId());
         tCourseDTO.setCourseName(tCourseDO.getCourseName());
         if (null != courseCoverKv) {
-            tCourseDTO.setCourseCoverName(courseCoverKv.getKey());
-            tCourseDTO.setCourseCoverUrl(courseCoverKv.getValue());
+            tCourseDTO.setCourseCover(new UploadFileInfo(courseCover, courseCoverKv.getKey(), courseCoverKv.getValue()));
         }
         if (null != courseAudioKv) {
-            tCourseDTO.setCourseAudioName(courseAudioKv.getKey());
-            tCourseDTO.setCourseAudioUrl(courseAudioKv.getValue());
+            tCourseDTO.setCourseAudio(new UploadFileInfo(fkCourseAudioId, courseAudioKv.getKey(), courseAudioKv.getValue()));
         }
         tCourseDTO.setCourseDescription(tCourseDO.getCourseDescription());
         tCourseDTO.setPublishStatus(tCourseDO.getPublishStatus());
@@ -84,6 +83,8 @@ public interface TCourseConvert {
      * @param addDTO the add dto
      * @return the t course do
      */
+    @Mapping(target = "fkCourseAudioId", source = "courseAudio.id")
+    @Mapping(target = "courseCover", source = "courseCover.id")
     @Mapping(target = "createTime", expression = "java(System.currentTimeMillis())")
     @Mapping(target = "updateTime", expression = "java(System.currentTimeMillis())")
     TCourseDO toDo(OrchestrateAddDTO addDTO);

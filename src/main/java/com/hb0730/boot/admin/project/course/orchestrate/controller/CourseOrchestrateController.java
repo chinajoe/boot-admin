@@ -1,6 +1,5 @@
 package com.hb0730.boot.admin.project.course.orchestrate.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.hb0730.boot.admin.domain.result.PageVO;
 import com.hb0730.boot.admin.domain.result.R;
 import com.hb0730.boot.admin.domain.result.Result;
@@ -100,7 +99,7 @@ public class CourseOrchestrateController {
      */
     @RequestMapping("/upload")
     public Result<Collection<String>> upload(MultipartFile[] file) throws IOException {
-        log.info("upload--param file:{}", JSON.toJSONString(file));
+        log.info("upload--param file:{}", file);
         if (null == file || file.length < 1) {
             return R.fail(PARAMS_REQUIRED_IS_NULL);
         }

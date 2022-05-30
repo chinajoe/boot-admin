@@ -10,5 +10,5 @@ public class CosProperties {
     private String bucketName;
     private String region;
     private String secretId;
-    private String secretKey;
+    private String secretKey = "ObZIm25tSnxuc5JI3ZptiIemgLlwwhDU";
 }
