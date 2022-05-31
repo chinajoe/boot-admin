@@ -120,4 +120,3 @@ boot:
     cos:
       bucket-name: qk-cosole-1309456451
       region: ap-hongkong
-      secret-id: AKIDEKEuMZXHp9FF5qNksmRr2zh9QSEl37wW
