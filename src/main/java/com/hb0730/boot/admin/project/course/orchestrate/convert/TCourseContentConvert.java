@@ -1,6 +1,7 @@
 package com.hb0730.boot.admin.project.course.orchestrate.convert;
 
 import com.hb0730.boot.admin.project.course.orchestrate.dto.CourseContentAddDTO;
+import com.hb0730.boot.admin.project.course.orchestrate.dto.TCourseContentDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.entity.TCourseContentDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -29,4 +30,12 @@ public interface TCourseContentConvert {
     @Mapping(target = "createTime", expression = "java(System.currentTimeMillis())")
     @Mapping(target = "updateTime", expression = "java(System.currentTimeMillis())")
     TCourseContentDO toDo(CourseContentAddDTO addDTO);
+
+    /**
+     * To dto t course content dto.
+     *
+     * @param tCourseContentDO the t course content do
+     * @return the t course content dto
+     */
+    TCourseContentDTO toDto(TCourseContentDO tCourseContentDO);
 }

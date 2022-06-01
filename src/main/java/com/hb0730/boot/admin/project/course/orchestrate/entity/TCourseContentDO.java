@@ -20,6 +20,8 @@ public class TCourseContentDO {
     private String content;
     // 课程html内容
     private String htmlContent;
+    // 发布设置
+    private Integer publishType;
     // 创建时间
     private Long createTime;
     // 更新时间

@@ -8,11 +8,12 @@ import java.io.Serializable;
 /**
  * @description:
  * @author: qiaojinfeng3
- * @date: 2022/5/4 21:35
+ * @date: 2022/5/3 23:05
  */
 @Data
 @ToString
-public class CourseContentAddDTO implements Serializable {
+public class TCourseContentDTO implements Serializable {
+    private String id;
     // 课程id
     private String fkCourseId;
     // 课程内容
