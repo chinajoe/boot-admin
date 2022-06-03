@@ -1,17 +1,19 @@
 package com.hb0730.boot.admin.project.system.dept.controller;
 
-
 import com.hb0730.boot.admin.annotation.ClassDescribe;
 import com.hb0730.boot.admin.annotation.PreAuth;
 import com.hb0730.boot.admin.domain.controller.SuperSimpleBaseController;
-import com.hb0730.boot.admin.domain.result.Result;
 import com.hb0730.boot.admin.domain.result.R;
+import com.hb0730.boot.admin.domain.result.Result;
 import com.hb0730.boot.admin.project.system.dept.model.dto.DeptDTO;
 import com.hb0730.boot.admin.project.system.dept.model.dto.TreeDeptDTO;
 import com.hb0730.boot.admin.project.system.dept.model.entity.DeptEntity;
 import com.hb0730.boot.admin.project.system.dept.model.query.DeptParams;
 import com.hb0730.boot.admin.project.system.dept.service.IDeptService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,6 +46,14 @@ public class DeptController extends SuperSimpleBaseController<Long, DeptDTO, Dep
     @GetMapping("/tree/all")
     public Result<Set<TreeDeptDTO>> getDeptTreeAll() {
         DeptParams params = new DeptParams();
+        List<DeptDTO> list = service.list(params);
+        Set<TreeDeptDTO> treeDept = service.buildTree(list);
+        return R.success(treeDept);
+    }
+
+    @PostMapping("/tree")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR','dept:query')")
+    public Result<Set<TreeDeptDTO>> getDeptTree(@RequestBody DeptParams params){
         List<DeptDTO> list = service.list(params);
         Set<TreeDeptDTO> treeDept = service.buildTree(list);
         return R.success(treeDept);

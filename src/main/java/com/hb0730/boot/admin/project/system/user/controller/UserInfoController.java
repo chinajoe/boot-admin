@@ -1,6 +1,5 @@
 package com.hb0730.boot.admin.project.system.user.controller;
 
-
 import cn.hutool.core.bean.BeanUtil;
 import com.hb0730.boot.admin.annotation.ClassDescribe;
 import com.hb0730.boot.admin.annotation.Log;
@@ -24,7 +23,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,7 +100,7 @@ public class UserInfoController extends SuperSimpleBaseController<Long, UserInfo
      * @return 是否成功
      */
     @GetMapping("/rest/password/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR','user;rest:password')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRATOR','user:rest:password')")
     @Log(value = "重置密码")
     public Result<String> restPassword(@PathVariable("id") Long id) {
         UserInfoEntity entity = service.getById(id);
