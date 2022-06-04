@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.hb0730.boot.admin.commons.utils.FutureUtil;
 import com.hb0730.boot.admin.cos.CosService;
 import com.hb0730.boot.admin.domain.model.dto.KV;
+import com.hb0730.boot.admin.domain.model.dto.UploadFileInfo;
 import com.hb0730.boot.admin.domain.result.PageVO;
 import com.hb0730.boot.admin.infrastructure.TCourseRepository;
 import com.hb0730.boot.admin.infrastructure.TFileInfoRepository;
@@ -136,7 +137,7 @@ public class TCourseServiceImpl implements TCourseService {
     }
 
     @Override
-    public Collection<String> upload(Collection<File> files) {
+    public Collection<UploadFileInfo> upload(Collection<File> files) {
         if (null == files || files.isEmpty()) {
             return Collections.emptyList();
         }
@@ -168,7 +169,13 @@ public class TCourseServiceImpl implements TCourseService {
             }, threadPoolTaskExecutor);
         }
         return fileInfoDOCollection.stream()
-            .map(TFileInfoDO::getId)
+            .map(tFileInfoDO -> {
+                String id = tFileInfoDO.getId();
+                String fileName = tFileInfoDO.getFileName();
+                String ossKey = fileNameAndOssKeyMap.get(fileName);
+                String publicUrl = cosService.getPublicUrl(ossKey);
+                return new UploadFileInfo(id, fileName, publicUrl);
+            })
             .collect(Collectors.toList());
     }
 

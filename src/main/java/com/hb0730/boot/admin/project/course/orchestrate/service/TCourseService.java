@@ -1,5 +1,6 @@
 package com.hb0730.boot.admin.project.course.orchestrate.service;
 
+import com.hb0730.boot.admin.domain.model.dto.UploadFileInfo;
 import com.hb0730.boot.admin.domain.result.PageVO;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateAddDTO;
 import com.hb0730.boot.admin.project.course.orchestrate.dto.OrchestrateParams;
@@ -64,5 +65,5 @@ public interface TCourseService {
      * @param files the files
      * @return the collection
      */
-    Collection<String> upload(Collection<File> files);
+    Collection<UploadFileInfo> upload(Collection<File> files);
 }

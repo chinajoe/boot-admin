@@ -1,6 +1,7 @@
 package com.hb0730.boot.admin.cos;
 
 import com.hb0730.boot.admin.configuration.properties.BootAdminProperties;
+import com.hb0730.boot.admin.configuration.properties.CosProperties;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.http.HttpMethodName;
 import com.qcloud.cos.model.PutObjectRequest;
@@ -62,6 +63,19 @@ public class CosService {
         HttpMethodName method = HttpMethodName.GET;
         URL url = cosClient.generatePresignedUrl(bucketName, key, expirationDate, method, headers, params);
         return url.toString();
+    }
+
+    /**
+     * Gets public url.
+     *
+     * @param key the key
+     * @return the public url
+     */
+    public String getPublicUrl(String key) {
+        CosProperties cosProperties = bootAdminProperties.getCos();
+        String bucketName = cosProperties.getBucketName();
+        String region = cosProperties.getRegion();
+        return "https://" + bucketName + ".cos." + region + ".myqcloud.com" + key;
     }
 
     /**
