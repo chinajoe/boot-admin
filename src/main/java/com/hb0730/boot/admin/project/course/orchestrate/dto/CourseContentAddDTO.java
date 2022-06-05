@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Data
 @ToString
 public class CourseContentAddDTO implements Serializable {
+    private String id;
     // 课程id
     private String fkCourseId;
     // 课程内容
