@@ -53,7 +53,7 @@ public class JdDateTimeUtil {
     private static final DateTimeFormatter YYYY_MM_FORMATTER;
     // DEFAULT_FORMATTER
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern(
-            DateTimeFormatEnum.DEFAULT.getPattern());
+        DateTimeFormatEnum.DEFAULT.getPattern());
     /**
      * The constant AUTHORIZATION_DATE_TIME_FORMATTER.
      */
@@ -65,31 +65,31 @@ public class JdDateTimeUtil {
 
     static {
         ES_TIME_WITHOUT_NANO = new DateTimeFormatterBuilder()
-                .appendValue(HOUR_OF_DAY, 2)
-                .appendLiteral(':')
-                .appendValue(MINUTE_OF_HOUR, 2)
-                .optionalStart()
-                .appendLiteral(':')
-                .appendValue(SECOND_OF_MINUTE, 2)
-                .toFormatter();
+            .appendValue(HOUR_OF_DAY, 2)
+            .appendLiteral(':')
+            .appendValue(MINUTE_OF_HOUR, 2)
+            .optionalStart()
+            .appendLiteral(':')
+            .appendValue(SECOND_OF_MINUTE, 2)
+            .toFormatter();
         YYYY_MM_FORMATTER = new DateTimeFormatterBuilder()
-                .parseCaseInsensitive()
-                .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
-                .appendLiteral('-')
-                .appendValue(ChronoField.MONTH_OF_YEAR, 2)
-                .toFormatter();
+            .parseCaseInsensitive()
+            .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+            .appendLiteral('-')
+            .appendValue(ChronoField.MONTH_OF_YEAR, 2)
+            .toFormatter();
         AUTHORIZATION_DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
-                .parseCaseInsensitive()
-                .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
-                .appendValue(ChronoField.MONTH_OF_YEAR, 2)
-                .appendValue(ChronoField.DAY_OF_MONTH, 2)
-                .appendLiteral("T")
-                .appendValue(ChronoField.HOUR_OF_DAY, 2)
-                .appendValue(ChronoField.MINUTE_OF_HOUR, 2)
-                .optionalStart()
-                .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
-                .appendLiteral("Z")
-                .toFormatter();
+            .parseCaseInsensitive()
+            .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+            .appendValue(ChronoField.MONTH_OF_YEAR, 2)
+            .appendValue(ChronoField.DAY_OF_MONTH, 2)
+            .appendLiteral("T")
+            .appendValue(ChronoField.HOUR_OF_DAY, 2)
+            .appendValue(ChronoField.MINUTE_OF_HOUR, 2)
+            .optionalStart()
+            .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
+            .appendLiteral("Z")
+            .toFormatter();
     }
 
     /**
@@ -124,17 +124,16 @@ public class JdDateTimeUtil {
         return zonedDateTime.toLocalDateTime();
     }
 
-
     /**
      * To local date time local date time.
      * yyyy-MM-dd HH:mm:ss
-     * @param  time
+     *
+     * @param time the time
      * @return the local date time
      */
     public static LocalDateTime toLocalDateTime(String time) {
         LocalDateTime localDateTime = parseToLocalDateTime(time, DateTimeFormatEnum.DEFAULT);
         return localDateTime;
-
     }
 
     /**
@@ -234,7 +233,7 @@ public class JdDateTimeUtil {
             systemDefault = zoneId;
         }
         return DateTimeFormatter.ofPattern(DateTimeFormatEnum.DEFAULT.getPattern()).withZone(systemDefault).format(
-                instant);
+            instant);
     }
 
     /**
@@ -373,6 +372,20 @@ public class JdDateTimeUtil {
             return null;
         }
         return localDate.format(DateTimeFormatter.ofPattern(DateFormatEnum.DATE.getPattern()));
+    }
+
+    /**
+     * Format date string.
+     *
+     * @param millisecond the millisecond
+     * @return the string
+     */
+    public static String formatDate(Long millisecond) {
+        if (null == millisecond || millisecond == 0) {
+            return null;
+        }
+        Instant instant = Instant.ofEpochMilli(millisecond);
+        return DateTimeFormatter.ofPattern(DateFormatEnum.DATE.getPattern()).withZone(zoneId).format(instant);
     }
 
     /**
@@ -899,7 +912,7 @@ public class JdDateTimeUtil {
      */
     public static boolean isGTE(LocalDateTime startTime, LocalDateTime updateTime) {
         return null != startTime && null != updateTime
-                && (updateTime.isAfter(startTime) || updateTime.isEqual(startTime));
+            && (updateTime.isAfter(startTime) || updateTime.isEqual(startTime));
     }
 
     /**
@@ -932,7 +945,6 @@ public class JdDateTimeUtil {
         Duration age = Duration.between(start, end);
         return age.get(ChronoUnit.SECONDS);
     }
-
 }
 
 
