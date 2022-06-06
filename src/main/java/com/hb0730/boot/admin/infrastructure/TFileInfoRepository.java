@@ -1,6 +1,7 @@
 package com.hb0730.boot.admin.infrastructure;
 
 import com.hb0730.boot.admin.project.course.prepare.entity.TFileInfoDO;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.velocity.shaded.commons.io.FilenameUtils;
 import org.springframework.data.repository.CrudRepository;
 
@@ -32,6 +33,17 @@ public interface TFileInfoRepository extends CrudRepository<TFileInfoDO, String>
      * @return the collection
      */
     default Collection<TFileInfoDO> saveAll(Collection<File> files) {
+        return saveAll(FILE_BASE_URL, files);
+    }
+
+    /**
+     * Save all collection.
+     *
+     * @param pathPrefix the path prefix
+     * @param files      the files
+     * @return the collection
+     */
+    default Collection<TFileInfoDO> saveAll(String pathPrefix, Collection<File> files) {
         if (null == files || files.isEmpty()) {
             return Collections.emptyList();
         }
@@ -40,7 +52,8 @@ public interface TFileInfoRepository extends CrudRepository<TFileInfoDO, String>
         List<TFileInfoDO> list = files.stream().map(file -> {
             String name = file.getName();
             long length = file.length();
-            String ossKey = FILE_BASE_URL + UUID.randomUUID() + "_" + name;
+            String strip = StringUtils.strip(pathPrefix, "/");
+            String ossKey = "/" + strip + "/" + UUID.randomUUID() + "_" + name;
             long currentTimeMillis = System.currentTimeMillis();
             String extension = FilenameUtils.getExtension(name);
             return new TFileInfoDO(name, extension, String.valueOf(length),

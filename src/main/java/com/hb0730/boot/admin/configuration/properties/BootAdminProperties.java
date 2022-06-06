@@ -29,6 +29,10 @@ public class BootAdminProperties {
      */
     private String copyrightYear;
     /**
+     * html2image服务地址
+     */
+    private String doctronConvertEndpoint;
+    /**
      * 实例演示开关
      */
     private boolean demoEnabled = false;

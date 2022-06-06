@@ -144,6 +144,21 @@ public class TCourseServiceImpl implements TCourseService {
 
         /* deal: save file infos */
         Collection<TFileInfoDO> fileInfoDOCollection = tFileInfoRepository.saveAll(files);
+        return doUpload(files, fileInfoDOCollection);
+    }
+
+    @Override
+    public Collection<UploadFileInfo> upload(String pathPrefix, Collection<File> files) {
+        if (null == files || files.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        /* deal: save file infos */
+        Collection<TFileInfoDO> fileInfoDOCollection = tFileInfoRepository.saveAll(pathPrefix, files);
+        return doUpload(files, fileInfoDOCollection);
+    }
+
+    private Collection<UploadFileInfo> doUpload(Collection<File> files, Collection<TFileInfoDO> fileInfoDOCollection) {
         Map<String, String> fileNameAndOssKeyMap = new HashMap<>();
         fileInfoDOCollection.forEach(tFileInfoDO -> {
             String fileName = tFileInfoDO.getFileName();

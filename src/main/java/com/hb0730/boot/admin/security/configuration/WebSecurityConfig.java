@@ -33,45 +33,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationEntryPoint authenticationEntryPointImpl;
     @Autowired
     private AccessDeniedHandler accessDeniedHandlerImpl;
-
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandlerImpl;
-
     @Autowired
     private UserDetailsService userDetailsService;
-
     @Autowired
     private CorsFilter corsFilter;
-
     @Autowired
     private AuthenticationTokenFilter authenticationTokenFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                // CSRF禁用，因为不使用session
-                .csrf().disable()
-                //认证失败处理类
-                .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPointImpl)
-                .accessDeniedHandler(accessDeniedHandlerImpl)
-                .and()
-                // 基于token，所以不需要session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                // 过滤请求
-                .authorizeRequests()
-                // 对于登录login  允许匿名访问
-                .antMatchers("/auth/**", "/favicon.ico").permitAll()
-                // 放行OPTIONS请求
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                // 其余认证访问
-                .antMatchers("/**").authenticated().and()
-                .headers().frameOptions().disable();
+            // CSRF禁用，因为不使用session
+            .csrf().disable()
+            //认证失败处理类
+            .exceptionHandling()
+            .authenticationEntryPoint(authenticationEntryPointImpl)
+            .accessDeniedHandler(accessDeniedHandlerImpl)
+            .and()
+            // 基于token，所以不需要session
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            // 过滤请求
+            .authorizeRequests()
+            // 对于登录login  允许匿名访问
+            .antMatchers("/auth/**", "/favicon.ico", "/**.html").permitAll()
+            // 放行OPTIONS请求
+            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            // 其余认证访问
+            .antMatchers("/**").authenticated().and()
+            .headers().frameOptions().disable();
         // 登出
         http.logout().logoutUrl("/auth/logout").logoutSuccessHandler(logoutSuccessHandlerImpl);
         // cors
         http.addFilterBefore(corsFilter, CorsFilter.class);
-
         // token
         http.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
@@ -92,7 +87,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 加密
         return new BCryptPasswordEncoder();
     }
-
 //    @Bean
 //    GrantedAuthorityDefaults grantedAuthorityDefaults() {
 //        // 去除 ROLE_ 前缀

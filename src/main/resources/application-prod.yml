@@ -106,10 +106,11 @@ mybatis-plus:
 boot:
   admin:
     name: boot-admin
-    version: 3.0.0
-    copyright-year: 2020
+    version: 4.0.0
+    copyright-year: 2022
     demo-enabled: false
     address-enabled: false
+    doctron-convert-endpoint: http://172.17.0.1
     token-config:
       header: Authorization
       token-prefix: "Bearer "

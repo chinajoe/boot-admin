@@ -66,4 +66,13 @@ public interface TCourseService {
      * @return the collection
      */
     Collection<UploadFileInfo> upload(Collection<File> files);
+
+    /**
+     * Upload collection.
+     *
+     * @param pathPrefix the path prefix
+     * @param files      the files
+     * @return the collection
+     */
+    Collection<UploadFileInfo> upload(String pathPrefix, Collection<File> files);
 }

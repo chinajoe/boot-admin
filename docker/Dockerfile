@@ -1,6 +1,10 @@
 FROM adoptopenjdk:11-jre-hotspot as builder
 WORKDIR application
 ARG JAR_FILE=./*.jar
+# font
+COPY fonts/ /usr/share/fonts/
+RUN fc-cache -fv
+# jar
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
